@@ -1,8 +1,33 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class ExpenseForm extends Component {
+  constructor() {
+    super();
+    // this.state = {
+    //   value: 0,
+    //   description: '',
+    //   currency: '',
+    //   method: '',
+    //   tag: '',
+    // };
+
+    this.addExpense = this.addExpense.bind(this);
+    this.onChangeInput = this.onChangeInput.bind(this);
+  }
+
+  onChangeInput({ target }) {
+    const { id, value } = target;
+    const stateName = id.replace(/-input/, '');
+    this.setState({ [stateName]: value });
+  }
+
+  addExpense(event) {
+    event.preventDefault();
+    // console.log('addExpense');
+  }
+
   render() {
     const { currencies } = this.props;
     return (
@@ -43,6 +68,9 @@ class ExpenseForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button type="submit" onClick={ this.addExpense }>
+          Adiciona despesa
+        </button>
       </form>
     );
   }
