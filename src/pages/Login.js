@@ -14,7 +14,7 @@ class Login extends Component {
 
   onChangeInput({ target }) {
     const { id, value } = target;
-    const stateName = id === 'email-input' ? 'emailInput' : 'passwordInput'; // this is gambiarra
+    const stateName = id.replace(/-input/, 'Input');
     this.setState({ [stateName]: value });
   }
 
@@ -23,7 +23,6 @@ class Login extends Component {
     const { emailInput } = this.state;
 
     addEmail(emailInput);
-    // console.log(addEmail);
     history.push('/carteira');
   }
 
@@ -86,10 +85,6 @@ Login.propTypes = {
   }),
   addEmail: PropTypes.func,
 }.isRequired;
-
-// const mapStateToProps = (state) => ({
-//   name: state.userReducer.name,
-// });
 
 const mapDispatchToProps = (dispatch) => ({
   addEmail: (email) => {
