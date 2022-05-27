@@ -40,7 +40,7 @@ class ExpenseForm extends Component {
 
   render() {
     const { currencies } = this.props;
-    const { value, description } = this.state;
+    const { value, description, currency, method, tag } = this.state;
 
     return (
       <form>
@@ -64,7 +64,7 @@ class ExpenseForm extends Component {
         </label>
         <label htmlFor="currency-input">
           Moeda
-          <select id="currency-input" onChange={ this.onChangeInput }>
+          <select id="currency-input" value={ currency } onChange={ this.onChangeInput }>
             {currencies.map((codeCoin) => (
               <option key={ codeCoin } value={ codeCoin }>
                 {codeCoin}
@@ -77,6 +77,7 @@ class ExpenseForm extends Component {
           <select
             data-testid="method-input"
             id="method-input"
+            value={ method }
             onChange={ this.onChangeInput }
           >
             <option value="Dinheiro">Dinheiro</option>
@@ -89,6 +90,7 @@ class ExpenseForm extends Component {
           <select
             data-testid="tag-input"
             id="tag-input"
+            value={ tag }
             onChange={ this.onChangeInput }
           >
             <option value="Alimentação">Alimentação</option>
